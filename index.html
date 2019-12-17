@@ -43,7 +43,7 @@
 <div class="intrude-less">
 	<header id="header" class="inner">
 		<a href="/" class="profilepic">
-			<img src="" class="js-avatar">
+			<img src="\themes\yilia\source\img\head.jpg" class="js-avatar">
 		</a>
 		<hgroup>
 		  <h1 class="header-author"><a href="/">John Doe</a></h1>
@@ -101,7 +101,7 @@
 	<div class="intrude-less">
 		<header id="header" class="inner">
 			<div class="profilepic">
-				<img src="" class="js-avatar">
+				<img src="\themes\yilia\source\img\head.jpg" class="js-avatar">
 			</div>
 			<hgroup>
 			  <h1 class="header-author js-header-author">John Doe</h1>
@@ -151,6 +151,115 @@
           </div>
           <div id="js-content" class="content-ll">
             
+  
+    <article id="post-cnki" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/12/17/cnki/">cnki</a>
+    </h1>
+  
+
+        
+        <a href="/2019/12/17/cnki/" class="archive-article-date">
+  	<time datetime="2019-12-17T08:40:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-17</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>[TOC]</p>
+<h2 id="更新说明"><a href="#更新说明" class="headerlink" title="更新说明"></a>更新说明</h2><ul>
+<li>2019.8 创建，知网账号登录、文献下载</li>
+<li>2019.9 应网友要求，增加验证码处理</li>
+</ul>
+<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p> 介绍了公网环境下，基于request方式的知网账号登录、文献下载、更为简便的跳转至详情页面功能以及验证码处理。</p>
+<ul>
+<li>运行环境：windows、阿里云linux系统测试通过，python3</li>
+</ul>
+<h2 id="基于用户名、密码登录知网"><a href="#基于用户名、密码登录知网" class="headerlink" title="基于用户名、密码登录知网"></a>基于用户名、密码登录知网</h2><p><a href="#用户登录代码">用户登录代码</a></p>
+<h2 id="详情页面"><a href="#详情页面" class="headerlink" title="详情页面"></a>详情页面</h2><p>文中作者(见参考资料1)，发送三次请求，前两次服务器注册，最后一次正式跳转的方式稍显繁琐，可采用如下方式<br><strong>获取链接</strong>：可在搜索界面通过开发着模式获取到如下跳转地址，选择其中的’dbcode’, ‘dbname’, ‘filename’字段内容即可定位一篇文献<br>‘<a href="http://kns.cnki.net&#39;" target="_blank" rel="noopener">http://kns.cnki.net&#39;</a> + detail_herf</p>
+<blockquote>
+<blockquote>
+<blockquote>
+</blockquote>
+<p>例如：</p>
+</blockquote>
+</blockquote>
+<ul>
+<li>地址：/kns/detail/detail.aspx?QueryID=4&amp;CurRec=9&amp;recid=&amp;FileName=QKKQ201921108&amp;DbName=CJFDPREP&amp;DbCode=CJFQ&amp;yx=&amp;pr=&amp;URLID=&amp;bsm=QK0103  </li>
+<li>结果：<br><a href="http://kns.cnki.net/KCMS/detail/detail.aspx?dbcode=CJFQ&amp;dbname=CJFDPREP&amp;filename=QKKQ201921108" target="_blank" rel="noopener">http://kns.cnki.net/KCMS/detail/detail.aspx?dbcode=CJFQ&amp;dbname=CJFDPREP&amp;filename=QKKQ201921108</a><blockquote>
+<blockquote>
+<blockquote>
+</blockquote>
+<p>如下图：<br><img src="https://note.youdao.com/yws/public/resource/8240755cb369714ec1fb53b2793bd6d8/xmlnote/90767BFD99854B7AB4AE2E6F658E194E/10214" alt="image"></p>
+</blockquote>
+</blockquote>
+</li>
+</ul>
+<h2 id="文献下载"><a href="#文献下载" class="headerlink" title="文献下载"></a>文献下载</h2><p><a href="#文件下载代码">文件下载代码</a></p>
+<ol>
+<li>请求头里不要配置 ‘Host’参数，否则在linux环境下会出现下载文献失败的情况。异常为：您登录后长时间没有操作，请您重新登录后再进行操作！</li>
+<li>整个下载过程重定向了三次，不过实际代码实现很简单<br><img src="https://note.youdao.com/yws/public/resource/8240755cb369714ec1fb53b2793bd6d8/xmlnote/CA49C98FCFF64448B7A288EC4C580EFE/10253" alt="image"></li>
+</ol>
+<h2 id="验证码处理"><a href="#验证码处理" class="headerlink" title="验证码处理"></a>验证码处理</h2><p><a href="#验证码处理代码">验证码处理代码</a><br>此处使用百度api，需要配置百度AipOcr信息。刚开始使用tesseract_ocr识别验证码，效果不错，不过在linux环境安装失败，因此才改用百度api。<br>代码调用位置参见<a href="#引文1">参考资料</a>中项目的调用情况</p>
+<h2 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h2><p>感谢参考资料中作者的讲解，让我实现很大部分功能，本文只是对作者博客的补充和优化。<br>验证码处理部分代码参考相关博客，由于已过去一月，暂无精力去寻找作者，在此表示感谢。</p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ol>
+<li><span id="引文1"><a href="https://blog.csdn.net/qq_37244001/article/details/85161349" target="_blank" rel="noopener">【实战】利用爬虫实现知网高级检索后的文献预览和下载（逻辑分析）</a><span></span></span></li>
+<li><span id="引文2"><a href="https://note.youdao.com/ynoteshare1/index.html?id=d5cdff9447f7a89c2c0954524ca0bcf2&type=note?auto" target="_blank" rel="noopener">【实战】利用爬虫实现知网高级检索后的文献预览和下载（优化）</a><span></span></span></li>
+</ol>
+<h2 id="核心代码"><a href="#核心代码" class="headerlink" title="核心代码"></a>核心代码</h2><h4 id="用户登录"><a href="#用户登录" class="headerlink" title="用户登录"></a>用户登录</h4><p><span id="用户登录代码"><span></span></span></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">headers = &#123;</span><br><span class="line">    <span class="string">'User-Agent'</span>:</span><br><span class="line">        <span class="string">'Mozilla/5.0 (hp-tablet; Linux; hpwOS/3.0.0; U; en-US) AppleWebKit/534.6 (KHTML, like Gecko) wOSBrowser/233.70 Safari/534.6 TouchPad/1.0'</span>,</span><br><span class="line">    <span class="string">'Connection'</span>: <span class="string">'keep-alive'</span>,</span><br><span class="line">    <span class="string">'Cache-Control'</span>: <span class="string">'max-age=0'</span>,</span><br><span class="line">    <span class="string">'Accept'</span>: <span class="string">'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3'</span>,</span><br><span class="line">    <span class="string">'Upgrade-Insecure-Requests'</span>: <span class="string">'1'</span>,</span><br><span class="line">    <span class="string">'Accept-Encoding'</span>: <span class="string">'gzip, deflate'</span>,</span><br><span class="line">    <span class="string">'Accept-Language'</span>: <span class="string">'zh-CN,zh;q=0.9'</span></span><br><span class="line">&#125;</span><br><span class="line">session = requests.Session()</span><br></pre></td></tr></table></figure>
+<p>#用户登录</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">def login_cnki(user_name, passwd):</span><br><span class="line">    #跳转至登录界面，从中获取相关登录参数</span><br><span class="line">    login_page_url &#x3D; &#39;http:&#x2F;&#x2F;login.cnki.net&#x2F;login&#x2F;?platform&#x3D;kns&amp;ForceReLogin&#x3D;1&amp;ReturnURL&#x3D;&#x2F;&#x2F;www.cnki.net&#39;</span><br><span class="line">    r &#x3D; session.get(login_page_url, headers&#x3D;headers)</span><br><span class="line">    soup &#x3D; BeautifulSoup(r.text, &#39;lxml&#39;)</span><br><span class="line">    __viewstate &#x3D; soup.find(name&#x3D;&#39;input&#39;, id&#x3D;&#39;__VIEWSTATE&#39;).get(&#39;value&#39;)</span><br><span class="line">    __viewstategenerator &#x3D; soup.find(name&#x3D;&#39;input&#39;, id&#x3D;&#39;__VIEWSTATEGENERATOR&#39;).get(&#39;value&#39;)</span><br><span class="line">    __eventvalidation &#x3D; soup.find(name&#x3D;&#39;input&#39;, id&#x3D;&#39;__EVENTVALIDATION&#39;).get(&#39;value&#39;)</span><br><span class="line">    post_data &#x3D; &#123;</span><br><span class="line">        &#39;__EVENTTARGET&#39;: &#39;Button1&#39;,</span><br><span class="line">        &#39;__EVENTARGUMENT&#39;: &#39;&#39;,</span><br><span class="line">        &#39;__VIEWSTATE&#39;: __viewstate,</span><br><span class="line">        &#39;__VIEWSTATEGENERATOR&#39;: __viewstategenerator,</span><br><span class="line">        &#39;__EVENTVALIDATION&#39;: __eventvalidation,</span><br><span class="line">        &#39;TextBoxUserName&#39;: user_name,</span><br><span class="line">        &#39;TextBoxPwd&#39;: passwd,</span><br><span class="line">        &#39;ecpuip&#39;: &#39;&#39;</span><br><span class="line">    &#125;</span><br><span class="line">    #发起登录请求</span><br><span class="line">    login_url &#x3D; &#39;http:&#x2F;&#x2F;login.cnki.net&#x2F;login&#x2F;?platform&#x3D;kns&amp;ForceReLogin&#x3D;1&amp;ReturnURL&#x3D;%2f%2fwww.cnki.net%2f&#39;</span><br><span class="line">    res &#x3D; session.post(login_url, data&#x3D;post_data, headers&#x3D;headers)</span><br><span class="line">    print(&#39;切换账号，用户名：%s&#39; % user_name)</span><br><span class="line">    #检测登录情况</span><br><span class="line">    def get_username_by_cookie():</span><br><span class="line">        for c in session.cookies:</span><br><span class="line">            if c.name &#x3D;&#x3D; &#39;Ecp_LoginStuts&#39;:</span><br><span class="line">                match &#x3D; re.search(&#39;UserName\&quot;:\&quot;.*?\&quot;,\&quot;ShowName&#39;, c.value)</span><br><span class="line">                if match:</span><br><span class="line">                    return match.group()[11:-12]</span><br><span class="line">        return None</span><br><span class="line">    name &#x3D; get_username_by_cookie()</span><br><span class="line">    if name &#x3D;&#x3D; user_name:</span><br><span class="line">        return True</span><br><span class="line">    print(&#39;登录失败，&#39;, user_name)</span><br><span class="line">    return False</span><br></pre></td></tr></table></figure>
+<h4 id="文件下载"><a href="#文件下载" class="headerlink" title="文件下载"></a>文件下载</h4><p><span id="文件下载代码"><span><br>``</span></span></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#文件下载</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">download</span><span class="params">(detail_page, file_name)</span>:</span></span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">    此处只考虑了PDF、对于硕博论文，只能下载caj格式，一样的流程，修改下提取的id和Content-Type判断即可</span></span><br><span class="line"><span class="string">    :detail_page：详情页面源码</span></span><br><span class="line"><span class="string">    :file_name：文件名</span></span><br><span class="line"><span class="string">    :return:</span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line">    soup = BeautifulSoup(detail_page, <span class="string">'html.parser'</span>)</span><br><span class="line">    pdf_url = soup.find(name=<span class="string">'a'</span>, id=<span class="string">'pdfDown'</span>)</span><br><span class="line">    download_url = pdf_url.attrs[<span class="string">'href'</span>]</span><br><span class="line">    download_url = str(download_url).strip().replace(<span class="string">'\n'</span>, <span class="string">''</span>)</span><br><span class="line">    download_url = <span class="string">'http://kns.cnki.net/'</span> + download_url</span><br><span class="line">    <span class="comment">#download_url:'http://kns.cnki.net/kns/download.aspx?filename=yIESw00LRJUS2plNClTM0cWN11kSK12LhNnNxJ0YZh0ZYtCWtFVbGZDblJjSwcjY1oETD90aL90QkVHUx1mUuJETmhXaaJ0NLd1R4c3ZOdDZEVESnRUeyc0YWNnQnFWQrU0VZVkTZF3YX5kY09Wc1UkQQhVSz1GV&amp;tablename=CAPJLAST&amp;dflag=pdfdown'</span></span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        res = session.get(download_url, headers=headers)</span><br><span class="line">        <span class="keyword">if</span> res.headers[<span class="string">'Content-Type'</span>] == <span class="string">'application/pdf'</span>:</span><br><span class="line">            print(<span class="string">'获取到PDF文件'</span>)</span><br><span class="line">            <span class="keyword">with</span> open(file_name, <span class="string">'wb'</span>) <span class="keyword">as</span> f:</span><br><span class="line">                f.write(res.content)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">if</span> str(res.headers[<span class="string">'Content-Type'</span>]).find(<span class="string">'text/html'</span>) != <span class="number">-1</span>:</span><br><span class="line">                soup = BeautifulSoup(res.text, <span class="string">'lxml'</span>)</span><br><span class="line">                points = soup.find_all(name=<span class="string">'p'</span>, class_=<span class="string">'p1'</span>)</span><br><span class="line">                <span class="comment"># 您单位机构馆当日漫游下载量已满。 请与图书馆联系，或使用个人账户下载本文。您的账户余额不足，请充值后下载全文。</span></span><br><span class="line">                <span class="comment"># 您单位机构馆贵单位没有订购该产品，请您与贵单位管理员联系订购！ 请与图书馆联系，或使用个人账户下载本文。您的账户余额不足，请充值后下载全文。</span></span><br><span class="line">                <span class="keyword">if</span> points:</span><br><span class="line">                    err_msg = <span class="string">''</span></span><br><span class="line">                    <span class="keyword">for</span> point <span class="keyword">in</span> points:</span><br><span class="line">                        err_msg += point.text</span><br><span class="line">                    print(<span class="string">'异常内容%s'</span> % err_msg)</span><br><span class="line">                <span class="comment"># 弹出框</span></span><br><span class="line">                match = re.search(<span class="string">'alert\(.*?\)'</span>, soup.text)</span><br><span class="line">                <span class="keyword">if</span> match:</span><br><span class="line">                    print(<span class="string">'弹出框：'</span>, str(match[<span class="number">0</span>])[<span class="number">7</span>:<span class="number">-2</span>])</span><br><span class="line">    <span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">        print(<span class="string">'下载pdf错误 ,error:%s'</span> % e)</span><br></pre></td></tr></table></figure>
+<h4 id="验证码处理-1"><a href="#验证码处理-1" class="headerlink" title="验证码处理"></a>验证码处理</h4><p><span id="验证码处理代码"><span></span></span></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#验证码识别</span></span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">from</span> urllib.parse <span class="keyword">import</span> quote_plus</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</span><br><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> ImageEnhance</span><br><span class="line"><span class="keyword">from</span> aip <span class="keyword">import</span> AipOcr</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> config_helper <span class="keyword">import</span> config</span><br><span class="line"><span class="keyword">from</span> utils <span class="keyword">import</span> log</span><br><span class="line"><span class="keyword">from</span> utils <span class="keyword">import</span> session</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">baidu_image_to_word</span><span class="params">(image_path)</span>:</span></span><br><span class="line">    <span class="string">""" 你的 APPID AK SK """</span></span><br><span class="line">    APP_ID = <span class="string">'xxxxxxx'</span></span><br><span class="line">    API_KEY = config.get_api_key  <span class="comment">#</span></span><br><span class="line">    SECRET_KEY = config.get_secret_key  <span class="comment">#</span></span><br><span class="line">    client = AipOcr(APP_ID, API_KEY, SECRET_KEY)</span><br><span class="line">    <span class="keyword">with</span> open(image_path, <span class="string">'rb'</span>) <span class="keyword">as</span> fp:</span><br><span class="line">        image = fp.read()</span><br><span class="line">    <span class="comment"># """ 调用通用文字识别, 图片参数为本地图片 """</span></span><br><span class="line">    <span class="comment"># client.basicGeneral(image)</span></span><br><span class="line">    <span class="string">""" 如果有可选参数 """</span></span><br><span class="line">    options = &#123;&#125;</span><br><span class="line">    options[<span class="string">"language_type"</span>] = <span class="string">"ENG"</span></span><br><span class="line">    options[<span class="string">"detect_direction"</span>] = <span class="string">"true"</span>  <span class="comment"># 是否检测图像朝向，默认不检测，即：false</span></span><br><span class="line">    <span class="comment">##options["detect_language"] = "true"#是否检测语言，默认不检测</span></span><br><span class="line">    options[<span class="string">"probability"</span>] = <span class="string">"true"</span>  <span class="comment"># 是否返回识别结果中每一行的置信度</span></span><br><span class="line">    <span class="string">""" 带参数调用通用文字识别, 图片参数为本地图片 """</span></span><br><span class="line">    <span class="comment"># res = client.basicAccurate(image, options)  # 通用文字识别(高精度版)。每天500次</span></span><br><span class="line">    res = client.basicGeneral(image, options)  <span class="comment"># 通用文字识别普通版。每天50000次</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        guess = res[<span class="string">'words_result'</span>][<span class="number">0</span>][<span class="string">'words'</span>]</span><br><span class="line">        probability = res[<span class="string">'words_result'</span>][<span class="number">0</span>][<span class="string">'probability'</span>][<span class="string">'average'</span>]</span><br><span class="line">    <span class="keyword">except</span>:</span><br><span class="line">        guess = <span class="string">''</span></span><br><span class="line">        probability = <span class="number">0</span></span><br><span class="line">    <span class="keyword">return</span> guess, probability, res</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">baidu_crack_code</span><span class="params">(img_url)</span>:</span></span><br><span class="line">    count = <span class="number">0</span></span><br><span class="line">    count_max = <span class="number">20</span></span><br><span class="line">    probability = <span class="number">0</span></span><br><span class="line">    <span class="comment">##图片文字识别的置信度大于0.9的时候才说明识别得比较准确，否则刷新验证码重新识别</span></span><br><span class="line">    <span class="comment"># probability &lt; 0.8 or</span></span><br><span class="line">    guess = <span class="literal">None</span></span><br><span class="line">    <span class="comment"># 验证码为5位的字母和数字组成</span></span><br><span class="line">    patten_reg = <span class="string">'^[a-zA-Z0-9]&#123;5&#125;$'</span></span><br><span class="line">    patten = re.compile(patten_reg)</span><br><span class="line">    <span class="keyword">while</span> (probability &lt; <span class="number">0.5</span> <span class="keyword">or</span> patten.search(guess) <span class="keyword">is</span> <span class="literal">None</span>) <span class="keyword">and</span> count &lt; count_max:</span><br><span class="line">        time.sleep(<span class="number">1</span>)</span><br><span class="line">        count += <span class="number">1</span></span><br><span class="line">        image_res = session.get(img_url)</span><br><span class="line">        img_code_file = <span class="string">'../data/crack_code.jpg'</span></span><br><span class="line">        <span class="keyword">with</span> open(img_code_file, <span class="string">'wb'</span>) <span class="keyword">as</span> file:</span><br><span class="line">            file.write(image_res.content)</span><br><span class="line">        <span class="comment">##增强图形识别率的处理</span></span><br><span class="line">        i2 = Image.open(img_code_file)</span><br><span class="line"></span><br><span class="line">        imgry = i2.convert(<span class="string">'L'</span>)  <span class="comment"># 图像加强，二值化，PIL中有九种不同模式。分别为1，L，P，RGB，RGBA，CMYK，YCbCr，I，F。L为灰度图像</span></span><br><span class="line">        sharpness = ImageEnhance.Contrast(imgry)  <span class="comment"># 对比度增强</span></span><br><span class="line">        i3 = sharpness.enhance(<span class="number">3.0</span>)  <span class="comment"># 3.0为图像的饱和度</span></span><br><span class="line">        tmp_file = <span class="string">"../data/result.png"</span></span><br><span class="line">        i3.save(tmp_file)</span><br><span class="line">        <span class="comment">##连接api获取返回结果</span></span><br><span class="line">        guess, probability, res = baidu_image_to_word(tmp_file)  <span class="comment"># 连接百度api</span></span><br><span class="line">        print(<span class="string">'第%d次猜测验证码,猜测结果为%s,,置信度平均值为%f'</span> % (count, guess, probability))</span><br><span class="line">        log.debug(<span class="string">'第%d次猜测验证码,猜测结果为%s,,置信度平均值为%f'</span> % (count, guess, probability))</span><br><span class="line">    <span class="keyword">return</span> guess</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 多次识别验证码+验证，验证通过</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">creak</span><span class="params">(img_url, send_url)</span>:</span></span><br><span class="line">    <span class="comment"># 验证码识别，此处使用了百度ocr，建议使用tesseract_ocr</span></span><br><span class="line">    code = baidu_crack_code(img_url)</span><br><span class="line">    <span class="comment"># 发送验证码</span></span><br><span class="line">    send_url += code</span><br><span class="line">    log.debug(<span class="string">'send_url:%s'</span>, send_url)</span><br><span class="line">    header = &#123;<span class="string">'Referer'</span>: send_url&#125;</span><br><span class="line">    rsp = session.get(send_url, headers=header)</span><br><span class="line">    res = rsp.text</span><br><span class="line">    <span class="keyword">if</span> str(res).find(<span class="string">'请输入验证码'</span>) != <span class="number">-1</span>:</span><br><span class="line">        log.debug(<span class="string">' 验证码标识验证码错误。'</span>)</span><br><span class="line">        log.debug(<span class="string">'res_headers: %s'</span> % rsp.headers)</span><br><span class="line">        <span class="keyword">return</span> creak(img_url, send_url)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        log.debug(<span class="string">' 验证码标识破解成功结果 '</span>)</span><br><span class="line">    <span class="keyword">return</span> res</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">crack_code</span><span class="params">(url, page_source)</span>:</span></span><br><span class="line">    <span class="comment"># 获得验证码图片地址</span></span><br><span class="line">    imgurl_pattern_compile = re.compile(<span class="string">r'.*?&lt;img src="(.*?)".*?'</span>)</span><br><span class="line">    img_url = re.search(imgurl_pattern_compile, page_source).group(<span class="number">1</span>)</span><br><span class="line">    <span class="comment"># url = re.search(r'(.*?)#', url).group(1)</span></span><br><span class="line">    re_url = re.search(<span class="string">r'.net(.*)'</span>, url).group(<span class="number">1</span>)</span><br><span class="line">    img_url = <span class="string">'http://kns.cnki.net'</span> + img_url</span><br><span class="line">    log.debug(<span class="string">'img_url:%s'</span> % img_url)</span><br><span class="line">    <span class="comment"># 对发送链接进行处理</span></span><br><span class="line">    re_url = quote_plus(re_url)</span><br><span class="line">    re_url = re_url.replace(<span class="string">'%2F'</span>, <span class="string">'%2f'</span>).replace(<span class="string">'%3F'</span>, <span class="string">'%3f'</span>).replace(<span class="string">'%3D'</span>, <span class="string">'%3d'</span>)</span><br><span class="line">    send_url = <span class="string">'http://kns.cnki.net/kns/brief/vericode.aspx?rurl='</span> + re_url + <span class="string">'&amp;vericode='</span></span><br><span class="line">    <span class="keyword">return</span> creak(img_url, send_url)</span><br></pre></td></tr></table></figure>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/12/17/cnki/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
   
     <article id="post-mysql-article" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
@@ -525,23 +634,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
             </li>
           
             <li class="search-li">
-              <a href="http://localhost:4000/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接2</a>
-            </li>
-          
-            <li class="search-li">
-              <a href="http://localhost:4000/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接3</a>
-            </li>
-          
-            <li class="search-li">
-              <a href="http://localhost:4000/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接4</a>
-            </li>
-          
-            <li class="search-li">
-              <a href="http://localhost:4000/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接5</a>
-            </li>
-          
-            <li class="search-li">
-              <a href="http://localhost:4000/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接6</a>
+              <a href="https://github.com/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接2</a>
             </li>
           
         </ul>
@@ -552,7 +645,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
     
     	<section class="tools-section tools-section-me" q-show="aboutme">
   	  	
-  	  		<div class="aboutme-wrap" id="js-aboutme">很惭愧&lt;br&gt;&lt;br&gt;只做了一点微小的工作&lt;br&gt;谢谢大家</div>
+  	  		<div class="aboutme-wrap" id="js-aboutme">积小成多&lt;br&gt;&lt;br&gt;做一点微小的工作&lt;br&gt;谢谢大家</div>
   	  	
     	</section>
     
