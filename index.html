@@ -152,6 +152,147 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-mysql-article" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/12/17/mysql-article/">mysql_article</a>
+    </h1>
+  
+
+        
+        <a href="/2019/12/17/mysql-article/" class="archive-article-date">
+  	<time datetime="2019-12-17T01:04:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-17</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>(1)登录：mysql -u root -p  </p>
+<p>(2)查看现有用户(mysql8.0)<br>mysql&gt; select host,user,authentication_string from mysql.user;<br>+————–+——————+————————————————————————+<br>| host         | user             | authentication_string                                                  |<br>+————–+——————+————————————————————————+<br>| %            | test             | *126BB20052A4CCAAE93527CE311D3FC8B6A7D08D                              |<br>| 192.168.7.22 | test             | *126BB20052A4CCAAE93527CE311D3FC8B6A7D08D                              |<br>| localhost    | mysql.infoschema | $A$005$THISISACOMBINATIONOFINVALIDSALTANDPASSWORDTHATMUSTNEVERBRBEUSED |<br>| localhost    | mysql.session    | $A$005$THISISACOMBINATIONOFINVALIDSALTANDPASSWORDTHATMUSTNEVERBRBEUSED |<br>| localhost    | mysql.sys        | $A$005$THISISACOMBINATIONOFINVALIDSALTANDPASSWORDTHATMUSTNEVERBRBEUSED |<br>| localhost    | root             | *126BB20052A4CCAAE93527CE311D3FC8B6A7D08D                              |<br>| localhost    | test             | *126BB20052A4CCAAE93527CE311D3FC8B6A7D08D                              |<br>+————–+——————+————————————————————————+<br>7 rows in set (0.00 sec)<br>(3)新建用户</p>
+<p>　格式:create user “username”@”host” identified by “password”;</p>
+<p>　eg：<br>1.mysql-&gt;create user ‘test’@’localhost’ identified by ‘123’;</p>
+<p>2.mysql-&gt;create user ‘test’@’192.168.7.22’ identified by ‘123’;</p>
+<p>3.mysql-&gt;create user ‘test’@’%’ identified by ‘123’;<br>    /<em>host=”localhost”为本地登录用户，host=”ip”为ip地址登录，host=”%”，为外网ip登录</em>/<br>(4)删除用户</p>
+<p>　格式：drop user ‘username’@’host’;</p>
+<p>(5)授权</p>
+<p>　格式：grant privileges on databasename.tablename to ‘username’@’host’ IDENTIFIED BY ‘PASSWORD’;</p>
+<p>　  1. GRANT命令说明：<br>   　　 　　priveleges(权限列表),可以是all priveleges, 表示所有权限，也可以是select、update等权限，多个权限的名词,相互之间用逗号分开。</p>
+<p>   　　 　　on用来指定权限针对哪些库和表。</p>
+<p>   　　　　 <em>.</em> 中前面的<em>号用来指定数据库名，后面的</em>号用来指定表名。</p>
+<pre><code>　　　　to 表示将权限赋予某个用户, 如 jack@&apos;localhost&apos; 表示jack用户，@后面接限制的主机，可以是IP、IP段、域名以及%，%表示任何地方。注意：这里%有的版本不包括本地，以前碰到过给某个用户设置了%允许任何地方登录，但是                  在本地登录不了，这个和版本有关系，遇到这个问题再加一个localhost的用户就可以了。</code></pre><p>   　　       identified by指定用户的登录密码,该项可以省略。</p>
+<pre><code>　　       WITH GRANT OPTION 这个选项表示该用户可以将自己拥有的权限授权给别人。注意：经常有人在创建操作用户的时候不指定WITH GRANT OPTION选项导致后来该用户不能使用GRANT命令创建用户或者给其它用户授权。
+
+备注：可以使用GRANT重复给用户添加权限，权限叠加，比如你先给用户添加一个select权限，然后又给用户添加一个insert权限，那么该用户就同时拥有了select和insert权限。</code></pre><p>　　2.授权原则说明：</p>
+<p>　　　　权限控制主要是出于安全因素，因此需要遵循一下几个经验原则：</p>
+<p>   　　　 a、只授予能满足需要的最小权限，防止用户干坏事。比如用户只是需要查询，那就只给select权限就可以了，不要给用户赋予update、insert或者delete权限。</p>
+<pre><code>　　　b、创建用户的时候限制用户的登录主机，一般是限制成指定IP或者内网IP段。
+
+　　　c、初始化数据库的时候删除没有密码的用户。安装完数据库的时候会自动创建一些用户，这些用户默认没有密码。
+
+　　　d、为每个用户设置满足密码复杂度的密码。</code></pre><p>   　　　 e、定期清理不需要的用户。回收权限或者删除用户。</p>
+<p>　eg：</p>
+<p>复制代码<br>   /<em>授予用户通过外网IP对于该数据库的全部权限</em>/</p>
+<p>　　grant all privileges on <code>test</code>.* to ‘test’@’%’ ;</p>
+<p>　 /<em>授予用户在本地服务器对该数据库的全部权限</em>/</p>
+<p>　　grant all privileges on <code>test</code>.* to ‘test’@’localhost’;   </p>
+<p>   grant select on test.* to ‘user1’@’localhost’;  /<em>给予查询权限</em>/</p>
+<p>   grant insert on test.* to ‘user1’@’localhost’; /<em>添加插入权限</em>/</p>
+<p>   grant delete on test.* to ‘user1’@’localhost’; /<em>添加删除权限</em>/</p>
+<p>   grant update on test.* to ‘user1’@’localhost’; /<em>添加权限</em>/</p>
+<p>　 flush privileges; /<em>刷新权限</em>/<br>复制代码<br>(6)查看权限</p>
+<p>复制代码<br> show grants;<br>+———————————————————————+<br>| Grants for root@localhost                                           |<br>+———————————————————————+<br>| GRANT ALL PRIVILEGES ON <em>.</em> TO ‘root’@’localhost’ WITH GRANT OPTION |<br>| GRANT PROXY ON ‘’@’’ TO ‘root’@’localhost’ WITH GRANT OPTION        |<br>+———————————————————————+<br>2 rows in set (0.00 sec)<br>复制代码<br>查看某个用户的权限：<br>复制代码<br>show grants for ‘jack’@’%’;<br>+—————————————————————————————————–+<br>| Grants for jack@%                                                                                   |<br>+—————————————————————————————————–+<br>| GRANT USAGE ON <em>.</em> TO ‘jack’@’%’ IDENTIFIED BY PASSWORD ‘*9BCDC990E611B8D852EFAF1E3919AB6AC8C8A9F0’ |<br>+—————————————————————————————————–+<br>1 row in set (0.00 sec)<br>复制代码<br>(7)删除权限</p>
+<p>　　revoke privileges on databasename.tablename from ‘username’@’host’;</p>
+<p>revoke delete on test.* from ‘jack’@’localhost’;<br>(8)更改用户名</p>
+<p>　　mysql&gt; rename user ‘jack’@’%’ to ‘jim’@’%’;</p>
+<p>(9)修改密码</p>
+<p>1.用set password命令</p>
+<p>　　mysql&gt; SET PASSWORD FOR ‘root’@’localhost’ = PASSWORD(‘123456’);</p>
+<p>　　Query OK, 0 rows affected (0.00 sec)</p>
+<p>2.用mysqladmin [root@rhel5 ~]# mysqladmin -uroot -p123456 password 1234abcd</p>
+<p>　　备注： 格式：mysqladmin -u用户名 -p旧密码 password 新密码</p>
+<p>3.用update直接编辑user表</p>
+<p>(10)pycharm中python3.6+pymysql+mysql8.0.1连接报错　</p>
+<p>pymysql.err.OperationalError: (1045, u”Access denied for user ‘root’@’localhost’ (using password: No)”)</p>
+<p>解决方法：　</p>
+<p>在cmd命令行连接mysql, 通过mysql -u root -p dong1990</p>
+<p>然后输入ALTER USER ‘root’@’localhost’ IDENTIFIED WITH mysql_native_password BY ‘dong1990’;</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">mysql</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Hexo</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Markdown</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/博客//" class="article-tag-list-link color3">博客</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/12/17/mysql-article/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-hello-world" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -318,6 +459,18 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
             <input type="checkbox" q-on="click:toggleTag(e)" q-attr="checked:showTags">
           </label>
           <ul class="article-tag-list" q-show="showTags">
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Markdown</a>
+              </li>
             
             <div class="clearfix"></div>
           </ul>

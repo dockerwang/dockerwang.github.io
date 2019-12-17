@@ -6,14 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2019/12 | Hexo</title>
+  <title>mysql_article | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;archives&#x2F;2019&#x2F;12&#x2F;index.html">
+  <meta name="description" content="(1)登录：mysql -u root -p   (2)查看现有用户(mysql8.0)mysql&gt; select host,user,authentication_string from mysql.user;+————–+——————+————————————————————————+| host         | user             | authentication_s">
+<meta property="og:type" content="article">
+<meta property="og:title" content="mysql_article">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;12&#x2F;17&#x2F;mysql-article&#x2F;index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="(1)登录：mysql -u root -p   (2)查看现有用户(mysql8.0)mysql&gt; select host,user,authentication_string from mysql.user;+————–+——————+————————————————————————+| host         | user             | authentication_s">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2019-12-17T01:04:28.000Z">
+<meta property="article:modified_time" content="2019-12-17T01:07:53.030Z">
 <meta property="article:author" content="John Doe">
+<meta property="article:tag" content="mysql">
+<meta property="article:tag" content="Hexo">
+<meta property="article:tag" content="Markdown">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
@@ -150,36 +157,104 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-mysql-article" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/12/17/mysql-article/" class="archive-article-date">
-  	<time datetime="2019-12-17T01:04:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-17</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/12/17/mysql-article/">mysql_article</a>
+    <h1 class="article-title" itemprop="name">
+      mysql_article
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2019/12/17/mysql-article/" class="archive-article-date">
+  	<time datetime="2019-12-17T01:04:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-17</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>(1)登录：mysql -u root -p  </p>
+<p>(2)查看现有用户(mysql8.0)<br>mysql&gt; select host,user,authentication_string from mysql.user;<br>+————–+——————+————————————————————————+<br>| host         | user             | authentication_string                                                  |<br>+————–+——————+————————————————————————+<br>| %            | test             | *126BB20052A4CCAAE93527CE311D3FC8B6A7D08D                              |<br>| 192.168.7.22 | test             | *126BB20052A4CCAAE93527CE311D3FC8B6A7D08D                              |<br>| localhost    | mysql.infoschema | $A$005$THISISACOMBINATIONOFINVALIDSALTANDPASSWORDTHATMUSTNEVERBRBEUSED |<br>| localhost    | mysql.session    | $A$005$THISISACOMBINATIONOFINVALIDSALTANDPASSWORDTHATMUSTNEVERBRBEUSED |<br>| localhost    | mysql.sys        | $A$005$THISISACOMBINATIONOFINVALIDSALTANDPASSWORDTHATMUSTNEVERBRBEUSED |<br>| localhost    | root             | *126BB20052A4CCAAE93527CE311D3FC8B6A7D08D                              |<br>| localhost    | test             | *126BB20052A4CCAAE93527CE311D3FC8B6A7D08D                              |<br>+————–+——————+————————————————————————+<br>7 rows in set (0.00 sec)<br>(3)新建用户</p>
+<p>　格式:create user “username”@”host” identified by “password”;</p>
+<p>　eg：<br>1.mysql-&gt;create user ‘test’@’localhost’ identified by ‘123’;</p>
+<p>2.mysql-&gt;create user ‘test’@’192.168.7.22’ identified by ‘123’;</p>
+<p>3.mysql-&gt;create user ‘test’@’%’ identified by ‘123’;<br>    /<em>host=”localhost”为本地登录用户，host=”ip”为ip地址登录，host=”%”，为外网ip登录</em>/<br>(4)删除用户</p>
+<p>　格式：drop user ‘username’@’host’;</p>
+<p>(5)授权</p>
+<p>　格式：grant privileges on databasename.tablename to ‘username’@’host’ IDENTIFIED BY ‘PASSWORD’;</p>
+<p>　  1. GRANT命令说明：<br>   　　 　　priveleges(权限列表),可以是all priveleges, 表示所有权限，也可以是select、update等权限，多个权限的名词,相互之间用逗号分开。</p>
+<p>   　　 　　on用来指定权限针对哪些库和表。</p>
+<p>   　　　　 <em>.</em> 中前面的<em>号用来指定数据库名，后面的</em>号用来指定表名。</p>
+<pre><code>　　　　to 表示将权限赋予某个用户, 如 jack@&apos;localhost&apos; 表示jack用户，@后面接限制的主机，可以是IP、IP段、域名以及%，%表示任何地方。注意：这里%有的版本不包括本地，以前碰到过给某个用户设置了%允许任何地方登录，但是                  在本地登录不了，这个和版本有关系，遇到这个问题再加一个localhost的用户就可以了。</code></pre><p>   　　       identified by指定用户的登录密码,该项可以省略。</p>
+<pre><code>　　       WITH GRANT OPTION 这个选项表示该用户可以将自己拥有的权限授权给别人。注意：经常有人在创建操作用户的时候不指定WITH GRANT OPTION选项导致后来该用户不能使用GRANT命令创建用户或者给其它用户授权。
+
+备注：可以使用GRANT重复给用户添加权限，权限叠加，比如你先给用户添加一个select权限，然后又给用户添加一个insert权限，那么该用户就同时拥有了select和insert权限。</code></pre><p>　　2.授权原则说明：</p>
+<p>　　　　权限控制主要是出于安全因素，因此需要遵循一下几个经验原则：</p>
+<p>   　　　 a、只授予能满足需要的最小权限，防止用户干坏事。比如用户只是需要查询，那就只给select权限就可以了，不要给用户赋予update、insert或者delete权限。</p>
+<pre><code>　　　b、创建用户的时候限制用户的登录主机，一般是限制成指定IP或者内网IP段。
+
+　　　c、初始化数据库的时候删除没有密码的用户。安装完数据库的时候会自动创建一些用户，这些用户默认没有密码。
+
+　　　d、为每个用户设置满足密码复杂度的密码。</code></pre><p>   　　　 e、定期清理不需要的用户。回收权限或者删除用户。</p>
+<p>　eg：</p>
+<p>复制代码<br>   /<em>授予用户通过外网IP对于该数据库的全部权限</em>/</p>
+<p>　　grant all privileges on <code>test</code>.* to ‘test’@’%’ ;</p>
+<p>　 /<em>授予用户在本地服务器对该数据库的全部权限</em>/</p>
+<p>　　grant all privileges on <code>test</code>.* to ‘test’@’localhost’;   </p>
+<p>   grant select on test.* to ‘user1’@’localhost’;  /<em>给予查询权限</em>/</p>
+<p>   grant insert on test.* to ‘user1’@’localhost’; /<em>添加插入权限</em>/</p>
+<p>   grant delete on test.* to ‘user1’@’localhost’; /<em>添加删除权限</em>/</p>
+<p>   grant update on test.* to ‘user1’@’localhost’; /<em>添加权限</em>/</p>
+<p>　 flush privileges; /<em>刷新权限</em>/<br>复制代码<br>(6)查看权限</p>
+<p>复制代码<br> show grants;<br>+———————————————————————+<br>| Grants for root@localhost                                           |<br>+———————————————————————+<br>| GRANT ALL PRIVILEGES ON <em>.</em> TO ‘root’@’localhost’ WITH GRANT OPTION |<br>| GRANT PROXY ON ‘’@’’ TO ‘root’@’localhost’ WITH GRANT OPTION        |<br>+———————————————————————+<br>2 rows in set (0.00 sec)<br>复制代码<br>查看某个用户的权限：<br>复制代码<br>show grants for ‘jack’@’%’;<br>+—————————————————————————————————–+<br>| Grants for jack@%                                                                                   |<br>+—————————————————————————————————–+<br>| GRANT USAGE ON <em>.</em> TO ‘jack’@’%’ IDENTIFIED BY PASSWORD ‘*9BCDC990E611B8D852EFAF1E3919AB6AC8C8A9F0’ |<br>+—————————————————————————————————–+<br>1 row in set (0.00 sec)<br>复制代码<br>(7)删除权限</p>
+<p>　　revoke privileges on databasename.tablename from ‘username’@’host’;</p>
+<p>revoke delete on test.* from ‘jack’@’localhost’;<br>(8)更改用户名</p>
+<p>　　mysql&gt; rename user ‘jack’@’%’ to ‘jim’@’%’;</p>
+<p>(9)修改密码</p>
+<p>1.用set password命令</p>
+<p>　　mysql&gt; SET PASSWORD FOR ‘root’@’localhost’ = PASSWORD(‘123456’);</p>
+<p>　　Query OK, 0 rows affected (0.00 sec)</p>
+<p>2.用mysqladmin [root@rhel5 ~]# mysqladmin -uroot -p123456 password 1234abcd</p>
+<p>　　备注： 格式：mysqladmin -u用户名 -p旧密码 password 新密码</p>
+<p>3.用update直接编辑user表</p>
+<p>(10)pycharm中python3.6+pymysql+mysql8.0.1连接报错　</p>
+<p>pymysql.err.OperationalError: (1045, u”Access denied for user ‘root’@’localhost’ (using password: No)”)</p>
+<p>解决方法：　</p>
+<p>在cmd命令行连接mysql, 通过mysql -u root -p dong1990</p>
+<p>然后输入ALTER USER ‘root’@’localhost’ IDENTIFIED WITH mysql_native_password BY ‘dong1990’;</p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -199,7 +274,7 @@
 		</ul>
 	</div>
 
-          
+      
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
@@ -212,44 +287,104 @@
 	</div>
 
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/12/17/mysql-article/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/12/16/hello-world/" class="archive-article-date">
-  	<time datetime="2019-12-16T12:26:38.886Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-16</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2019/12/16/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Hello World</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/12/16/hello-world/">Hello World</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
   
 
-    
+  
+
+  
 
 
           </div>
@@ -272,8 +407,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
