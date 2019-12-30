@@ -6,17 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Tag: Hexo | dockerwang</title>
+  <title>docker | dockerwang</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="����">
-<meta property="og:type" content="website">
-<meta property="og:title" content="dockerwang">
-<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;tags&#x2F;Hexo&#x2F;index.html">
+  <meta name="description" content="（1）#https:&#x2F;&#x2F;blog.lab99.org&#x2F;post&#x2F;docker-2016-07-14-faq.html （2）所以，你只要把 &#x2F;var&#x2F;lib&#x2F;registry 目录备份好了，配置文件一样，到另外一台机器，将备份好的 &#x2F;var&#x2F;lib&#x2F;registry 的内容放到一样的卷里，挂载一样的配置文件，那么跑起来就都一样。 （3）#http:&#x2F;&#x2F;archive.ics.uci.edu&#x2F;ml&#x2F;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="docker">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;12&#x2F;30&#x2F;docker&#x2F;index.html">
 <meta property="og:site_name" content="dockerwang">
-<meta property="og:description" content="����">
+<meta property="og:description" content="（1）#https:&#x2F;&#x2F;blog.lab99.org&#x2F;post&#x2F;docker-2016-07-14-faq.html （2）所以，你只要把 &#x2F;var&#x2F;lib&#x2F;registry 目录备份好了，配置文件一样，到另外一台机器，将备份好的 &#x2F;var&#x2F;lib&#x2F;registry 的内容放到一样的卷里，挂载一样的配置文件，那么跑起来就都一样。 （3）#http:&#x2F;&#x2F;archive.ics.uci.edu&#x2F;ml&#x2F;">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.imgur.com&#x2F;jz6LZvm.png">
+<meta property="article:published_time" content="2019-12-30T08:39:59.000Z">
+<meta property="article:modified_time" content="2019-12-30T08:41:00.085Z">
 <meta property="article:author" content="Pwang">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;i.imgur.com&#x2F;jz6LZvm.png">
   
     <link rel="alternative" href="/atom.xml" title="dockerwang" type="application/atom+xml">
   
@@ -156,79 +160,161 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-docker" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/12/17/mysql-article/" class="archive-article-date">
-  	<time datetime="2019-12-17T01:04:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-17</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/12/17/mysql-article/">mysql_article</a>
+    <h1 class="article-title" itemprop="name">
+      docker
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">mysql</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Hexo</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Markdown</a>
-        		</li>
-      		
-		</ul>
-	</div>
+        
+        <a href="/2019/12/30/docker/" class="archive-article-date">
+  	<time datetime="2019-12-30T08:39:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-30</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>（1）#<a href="https://blog.lab99.org/post/docker-2016-07-14-faq.html" target="_blank" rel="noopener" title="大牛（大桥下的蜗牛）关于docker问题99总结">https://blog.lab99.org/post/docker-2016-07-14-faq.html</a></p>
+<p>（2）<img src="https://i.imgur.com/jz6LZvm.png" alt="Docker Registry 只有两个东西是变动的，一个是 /var/lib/registry，一个是配置文件。只要这两个东西一样，那么无论你在内网、公网，还是自己笔记本上，跑起来的 docker registry 就都一样。"><br>所以，你只要把 /var/lib/registry 目录备份好了，配置文件一样，到另外一台机器，将备份好的 /var/lib/registry 的内容放到一样的卷里，挂载一样的配置文件，那么跑起来就都一样。</p>
+<p>（3）#<a href="http://archive.ics.uci.edu/ml/datasets.php" target="_blank" rel="noopener" title="查用数据集下载">http://archive.ics.uci.edu/ml/datasets.php</a></p>
+<h1 id="DOCKER命令"><a href="#DOCKER命令" class="headerlink" title="DOCKER命令"></a>DOCKER命令</h1><pre><code>docker run -d -p 80:4000 docs/docker.github.io</code></pre><p>这样访问 Docker 宿主的 80 端口，如 <a href="http://localhost，就会看到官网文档了。" target="_blank" rel="noopener">http://localhost，就会看到官网文档了。</a></p>
+<p>对于那些访问不了我的问答录的童鞋，同样可以用这样的方式来本地运行：</p>
+<pre><code>$ docker run -d -p 80:80 twang2218/blog.lab99.org</code></pre><p>Start your registry:</p>
+<pre><code>docker run -d -p 5000:5000 --restart=always --name registry registry:2</code></pre>
+      
 
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/博客//" class="article-tag-list-link color3">博客</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/12/30/docker/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2019/12/17/cnki/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">cnki</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -251,9 +337,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
