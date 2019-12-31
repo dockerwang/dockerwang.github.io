@@ -14,7 +14,7 @@
 <meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;index.html">
 <meta property="og:site_name" content="dockerwang">
 <meta property="og:description" content="����">
-<meta property="og:locale" content="en_US">
+<meta property="og:locale" content="zh_CN">
 <meta property="article:author" content="Pwang">
 <meta name="twitter:card" content="summary">
   
@@ -178,10 +178,11 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>（1）#<a href="https://blog.lab99.org/post/docker-2016-07-14-faq.html" target="_blank" rel="noopener" title="大牛（大桥下的蜗牛）关于docker问题99总结">https://blog.lab99.org/post/docker-2016-07-14-faq.html</a></p>
-<p>（2）<img src="https://i.imgur.com/jz6LZvm.png" alt="Docker Registry 只有两个东西是变动的，一个是 /var/lib/registry，一个是配置文件。只要这两个东西一样，那么无论你在内网、公网，还是自己笔记本上，跑起来的 docker registry 就都一样。"><br>所以，你只要把 /var/lib/registry 目录备份好了，配置文件一样，到另外一台机器，将备份好的 /var/lib/registry 的内容放到一样的卷里，挂载一样的配置文件，那么跑起来就都一样。</p>
-<p>（3）#<a href="http://archive.ics.uci.edu/ml/datasets.php" target="_blank" rel="noopener" title="查用数据集下载">http://archive.ics.uci.edu/ml/datasets.php</a></p>
-<h1 id="DOCKER命令"><a href="#DOCKER命令" class="headerlink" title="DOCKER命令"></a>DOCKER命令</h1><pre><code>docker run -d -p 80:4000 docs/docker.github.io</code></pre><p>这样访问 Docker 宿主的 80 端口，如 <a href="http://localhost，就会看到官网文档了。" target="_blank" rel="noopener">http://localhost，就会看到官网文档了。</a></p>
+        <p>（1）#<a href="https://blog.lab99.org/post/docker-2016-07-14-faq.html" target="_blank" rel="noopener" title="大牛（大桥下的蜗牛）关于docker问题99总结">大牛（大桥下的蜗牛）关于docker问题99总结</a></p>
+<p><img src="https://i.imgur.com/jz6LZvm.png" alt="Docker Registry 只有两个东西是变动的，一个是 /var/lib/registry，一个是配置文件。只要这两个东西一样，那么无论你在内网、公网，还是自己笔记本上，跑起来的 docker registry 就都一样。"><br><img src="/2019/12/30/docker/registry.jpg" alt="registry"></p>
+<p>所以，你只要把 /var/lib/registry 目录备份好了，配置文件一样，到另外一台机器，将备份好的 /var/lib/registry 的内容放到一样的卷里，挂载一样的配置文件，那么跑起来就都一样。</p>
+<p>（3）#<a href="http://archive.ics.uci.edu/ml/datasets.php" target="_blank" rel="noopener" title="常用数据集下载">常用数据集下载</a></p>
+<h1 id="docker命令"><a href="#docker命令" class="headerlink" title="docker命令"></a>docker命令</h1><pre><code>docker run -d -p 80:4000 docs/docker.github.io</code></pre><p>这样访问 Docker 宿主的 80 端口，如 <a href="http://localhost，就会看到官网文档了。" target="_blank" rel="noopener">http://localhost，就会看到官网文档了。</a></p>
 <p>对于那些访问不了我的问答录的童鞋，同样可以用这样的方式来本地运行：</p>
 <pre><code>$ docker run -d -p 80:80 twang2218/blog.lab99.org</code></pre><p>Start your registry:</p>
 <pre><code>docker run -d -p 5000:5000 --restart=always --name registry registry:2</code></pre>
@@ -192,6 +193,17 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">docker datasets</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -653,6 +665,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Markdown</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">docker datasets</a>
               </li>
             
             <div class="clearfix"></div>
