@@ -8,12 +8,10 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>dockerwang</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="����">
-<meta property="og:type" content="website">
+  <meta property="og:type" content="website">
 <meta property="og:title" content="dockerwang">
 <meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;index.html">
 <meta property="og:site_name" content="dockerwang">
-<meta property="og:description" content="����">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:author" content="Pwang">
 <meta name="twitter:card" content="summary">
@@ -21,7 +19,7 @@
     <link rel="alternative" href="/atom.xml" title="dockerwang" type="application/atom+xml">
   
   
-    <link rel="icon" href="/favicon.png">
+    <link rel="icon" href="/assets/img/head.jpg">
   
   <link rel="stylesheet" type="text/css" href="/./main.0cf68a.css">
   <style type="text/css">
@@ -45,13 +43,11 @@
 <div class="intrude-less">
 	<header id="header" class="inner">
 		<a href="/" class="profilepic">
-			<img src="source/img/head.jpg" class="js-avatar">
+			<img src="/assets/img/head.jpg" class="js-avatar">
 		</a>
 		<hgroup>
 		  <h1 class="header-author"><a href="/">Pwang</a></h1>
 		</hgroup>
-		
-		<p class="header-subtitle">��ݴ�ţ</p>
 		
 
 		<nav class="header-menu">
@@ -105,13 +101,11 @@
 	<div class="intrude-less">
 		<header id="header" class="inner">
 			<div class="profilepic">
-				<img src="source/img/head.jpg" class="js-avatar">
+				<img src="/assets/img/head.jpg" class="js-avatar">
 			</div>
 			<hgroup>
 			  <h1 class="header-author js-header-author">Pwang</h1>
 			</hgroup>
-			
-			<p class="header-subtitle"><i class="icon icon-quo-left"></i>��ݴ�ţ<i class="icon icon-quo-right"></i></p>
 			
 			
 			
@@ -179,7 +173,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>（1）#<a href="https://blog.lab99.org/post/docker-2016-07-14-faq.html" target="_blank" rel="noopener" title="大牛（大桥下的蜗牛）关于docker问题99总结">大牛（大桥下的蜗牛）关于docker问题99总结</a></p>
-<p><img src="https://i.imgur.com/jz6LZvm.png" alt="Docker Registry 只有两个东西是变动的，一个是 /var/lib/registry，一个是配置文件。只要这两个东西一样，那么无论你在内网、公网，还是自己笔记本上，跑起来的 docker registry 就都一样。"><br><img src="/2019/12/30/docker/registry.jpg" alt="registry"></p>
+<p>Docker Registry 只有两个东西是变动的，一个是 /var/lib/registry，一个是配置文件。只要这两个东西一样，那么无论你在内网、公网，还是自己笔记本上，跑起来的 docker registry 就都一样。<br><img src="/2019/12/30/docker/registry.jpg" alt="registry"></p>
 <p>所以，你只要把 /var/lib/registry 目录备份好了，配置文件一样，到另外一台机器，将备份好的 /var/lib/registry 的内容放到一样的卷里，挂载一样的配置文件，那么跑起来就都一样。</p>
 <p>（3）#<a href="http://archive.ics.uci.edu/ml/datasets.php" target="_blank" rel="noopener" title="常用数据集下载">常用数据集下载</a></p>
 <h1 id="docker命令"><a href="#docker命令" class="headerlink" title="docker命令"></a>docker命令</h1><pre><code>docker run -d -p 80:4000 docs/docker.github.io</code></pre><p>这样访问 Docker 宿主的 80 端口，如 <a href="http://localhost，就会看到官网文档了。" target="_blank" rel="noopener">http://localhost，就会看到官网文档了。</a></p>
@@ -282,7 +276,7 @@
 <blockquote>
 <blockquote>
 </blockquote>
-<p>如下图：<br><img src="https://note.youdao.com/yws/public/resource/8240755cb369714ec1fb53b2793bd6d8/xmlnote/90767BFD99854B7AB4AE2E6F658E194E/10214" alt="image"></p>
+<p>如下图：<br><img src="/2019/12/17/cnki/detail.png" alt="detail"></p>
 </blockquote>
 </blockquote>
 </li>
@@ -290,7 +284,7 @@
 <h2 id="文献下载"><a href="#文献下载" class="headerlink" title="文献下载"></a>文献下载</h2><p><a href="#文件下载代码">文件下载代码</a></p>
 <ol>
 <li>请求头里不要配置 ‘Host’参数，否则在linux环境下会出现下载文献失败的情况。异常为：您登录后长时间没有操作，请您重新登录后再进行操作！</li>
-<li>整个下载过程重定向了三次，不过实际代码实现很简单<br><img src="https://note.youdao.com/yws/public/resource/8240755cb369714ec1fb53b2793bd6d8/xmlnote/CA49C98FCFF64448B7A288EC4C580EFE/10253" alt="image"></li>
+<li>整个下载过程重定向了三次，不过实际代码实现很简单<br><img src="/2019/12/17/cnki/clipboard.png" alt="clipboard"></li>
 </ol>
 <h2 id="验证码处理"><a href="#验证码处理" class="headerlink" title="验证码处理"></a>验证码处理</h2><p><a href="#验证码处理代码">验证码处理代码</a><br>此处使用百度api，需要配置百度AipOcr信息。刚开始使用tesseract_ocr识别验证码，效果不错，不过在linux环境安装失败，因此才改用百度api。<br>代码调用位置参见<a href="#引文1">参考资料</a>中项目的调用情况</p>
 <h2 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h2><p>感谢参考资料中作者的讲解，让我实现很大部分功能，本文只是对作者博客的补充和优化。<br>验证码处理部分代码参考相关博客，由于已过去一月，暂无精力去寻找作者，在此表示感谢。</p>
@@ -368,55 +362,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>(1)登录：mysql -u root -p  </p>
-<p>(2)查看现有用户(mysql8.0)<br>mysql&gt; select host,user,authentication_string from mysql.user;<br>+————–+——————+————————————————————————+<br>| host         | user             | authentication_string                                                  |<br>+————–+——————+————————————————————————+<br>| %            | test             | *126BB20052A4CCAAE93527CE311D3FC8B6A7D08D                              |<br>| 192.168.7.22 | test             | *126BB20052A4CCAAE93527CE311D3FC8B6A7D08D                              |<br>| localhost    | mysql.infoschema | $A$005$THISISACOMBINATIONOFINVALIDSALTANDPASSWORDTHATMUSTNEVERBRBEUSED |<br>| localhost    | mysql.session    | $A$005$THISISACOMBINATIONOFINVALIDSALTANDPASSWORDTHATMUSTNEVERBRBEUSED |<br>| localhost    | mysql.sys        | $A$005$THISISACOMBINATIONOFINVALIDSALTANDPASSWORDTHATMUSTNEVERBRBEUSED |<br>| localhost    | root             | *126BB20052A4CCAAE93527CE311D3FC8B6A7D08D                              |<br>| localhost    | test             | *126BB20052A4CCAAE93527CE311D3FC8B6A7D08D                              |<br>+————–+——————+————————————————————————+<br>7 rows in set (0.00 sec)<br>(3)新建用户</p>
-<p>　格式:create user “username”@”host” identified by “password”;</p>
-<p>　eg：<br>1.mysql-&gt;create user ‘test’@’localhost’ identified by ‘123’;</p>
-<p>2.mysql-&gt;create user ‘test’@’192.168.7.22’ identified by ‘123’;</p>
-<p>3.mysql-&gt;create user ‘test’@’%’ identified by ‘123’;<br>    /<em>host=”localhost”为本地登录用户，host=”ip”为ip地址登录，host=”%”，为外网ip登录</em>/<br>(4)删除用户</p>
-<p>　格式：drop user ‘username’@’host’;</p>
-<p>(5)授权</p>
-<p>　格式：grant privileges on databasename.tablename to ‘username’@’host’ IDENTIFIED BY ‘PASSWORD’;</p>
-<p>　  1. GRANT命令说明：<br>   　　 　　priveleges(权限列表),可以是all priveleges, 表示所有权限，也可以是select、update等权限，多个权限的名词,相互之间用逗号分开。</p>
-<p>   　　 　　on用来指定权限针对哪些库和表。</p>
-<p>   　　　　 <em>.</em> 中前面的<em>号用来指定数据库名，后面的</em>号用来指定表名。</p>
-<pre><code>　　　　to 表示将权限赋予某个用户, 如 jack@&apos;localhost&apos; 表示jack用户，@后面接限制的主机，可以是IP、IP段、域名以及%，%表示任何地方。注意：这里%有的版本不包括本地，以前碰到过给某个用户设置了%允许任何地方登录，但是                  在本地登录不了，这个和版本有关系，遇到这个问题再加一个localhost的用户就可以了。</code></pre><p>   　　       identified by指定用户的登录密码,该项可以省略。</p>
-<pre><code>　　       WITH GRANT OPTION 这个选项表示该用户可以将自己拥有的权限授权给别人。注意：经常有人在创建操作用户的时候不指定WITH GRANT OPTION选项导致后来该用户不能使用GRANT命令创建用户或者给其它用户授权。
-
-备注：可以使用GRANT重复给用户添加权限，权限叠加，比如你先给用户添加一个select权限，然后又给用户添加一个insert权限，那么该用户就同时拥有了select和insert权限。</code></pre><p>　　2.授权原则说明：</p>
-<p>　　　　权限控制主要是出于安全因素，因此需要遵循一下几个经验原则：</p>
-<p>   　　　 a、只授予能满足需要的最小权限，防止用户干坏事。比如用户只是需要查询，那就只给select权限就可以了，不要给用户赋予update、insert或者delete权限。</p>
-<pre><code>　　　b、创建用户的时候限制用户的登录主机，一般是限制成指定IP或者内网IP段。
-
-　　　c、初始化数据库的时候删除没有密码的用户。安装完数据库的时候会自动创建一些用户，这些用户默认没有密码。
-
-　　　d、为每个用户设置满足密码复杂度的密码。</code></pre><p>   　　　 e、定期清理不需要的用户。回收权限或者删除用户。</p>
-<p>　eg：</p>
-<p>复制代码<br>   /<em>授予用户通过外网IP对于该数据库的全部权限</em>/</p>
-<p>　　grant all privileges on <code>test</code>.* to ‘test’@’%’ ;</p>
-<p>　 /<em>授予用户在本地服务器对该数据库的全部权限</em>/</p>
-<p>　　grant all privileges on <code>test</code>.* to ‘test’@’localhost’;   </p>
-<p>   grant select on test.* to ‘user1’@’localhost’;  /<em>给予查询权限</em>/</p>
-<p>   grant insert on test.* to ‘user1’@’localhost’; /<em>添加插入权限</em>/</p>
-<p>   grant delete on test.* to ‘user1’@’localhost’; /<em>添加删除权限</em>/</p>
-<p>   grant update on test.* to ‘user1’@’localhost’; /<em>添加权限</em>/</p>
-<p>　 flush privileges; /<em>刷新权限</em>/<br>复制代码<br>(6)查看权限</p>
-<p>复制代码<br> show grants;<br>+———————————————————————+<br>| Grants for root@localhost                                           |<br>+———————————————————————+<br>| GRANT ALL PRIVILEGES ON <em>.</em> TO ‘root’@’localhost’ WITH GRANT OPTION |<br>| GRANT PROXY ON ‘’@’’ TO ‘root’@’localhost’ WITH GRANT OPTION        |<br>+———————————————————————+<br>2 rows in set (0.00 sec)<br>复制代码<br>查看某个用户的权限：<br>复制代码<br>show grants for ‘jack’@’%’;<br>+—————————————————————————————————–+<br>| Grants for jack@%                                                                                   |<br>+—————————————————————————————————–+<br>| GRANT USAGE ON <em>.</em> TO ‘jack’@’%’ IDENTIFIED BY PASSWORD ‘*9BCDC990E611B8D852EFAF1E3919AB6AC8C8A9F0’ |<br>+—————————————————————————————————–+<br>1 row in set (0.00 sec)<br>复制代码<br>(7)删除权限</p>
-<p>　　revoke privileges on databasename.tablename from ‘username’@’host’;</p>
-<p>revoke delete on test.* from ‘jack’@’localhost’;<br>(8)更改用户名</p>
-<p>　　mysql&gt; rename user ‘jack’@’%’ to ‘jim’@’%’;</p>
-<p>(9)修改密码</p>
-<p>1.用set password命令</p>
-<p>　　mysql&gt; SET PASSWORD FOR ‘root’@’localhost’ = PASSWORD(‘123456’);</p>
-<p>　　Query OK, 0 rows affected (0.00 sec)</p>
-<p>2.用mysqladmin [root@rhel5 ~]# mysqladmin -uroot -p123456 password 1234abcd</p>
-<p>　　备注： 格式：mysqladmin -u用户名 -p旧密码 password 新密码</p>
-<p>3.用update直接编辑user表</p>
-<p>(10)pycharm中python3.6+pymysql+mysql8.0.1连接报错　</p>
-<p>pymysql.err.OperationalError: (1045, u”Access denied for user ‘root’@’localhost’ (using password: No)”)</p>
-<p>解决方法：　</p>
-<p>在cmd命令行连接mysql, 通过mysql -u root -p dong1990</p>
-<p>然后输入ALTER USER ‘root’@’localhost’ IDENTIFIED WITH mysql_native_password BY ‘dong1990’;</p>
-
+        
       
 
       
@@ -656,6 +602,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">docker datasets</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
@@ -665,10 +615,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Markdown</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">docker datasets</a>
               </li>
             
             <div class="clearfix"></div>
